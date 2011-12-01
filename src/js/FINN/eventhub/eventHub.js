@@ -17,9 +17,9 @@ FINN.eventHub = (function(){
     function publishTopic(topic){
         var callbacks = this.subscribers[topic] || [];
         var args = Array.prototype.slice.call(arguments, 1);
+        args.push(topic);
         for (var i=0, l = callbacks.length; i < l; i++){
             try {
-				args.push(topic);
                 callbacks[i].apply(null, args);
             } catch(e){
 				throw e;
